@@ -9,5 +9,6 @@ app.set('views', './app/views');
 app.use(cors());
 app.use(express.static('./app/public'));
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
 
 module.exports = app;
