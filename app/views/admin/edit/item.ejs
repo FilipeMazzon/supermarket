@@ -1,0 +1,152 @@
+<!DOCTYPE HTML>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Edição de itens</title>
+
+    <!-- JQuery -->
+    <script src="js/jquery-2.2.1.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script src="js/sidenav.js"></script>
+    <script src="js/updateText.js"></script>
+    <script src="js/select.js"></script>
+
+    <!-- bootstrap - link cdn -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- carregando icones -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- incluindo css -->
+    <link href="css/style.css" rel="stylesheet">
+    <!-- materialize -->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection"/>
+    <!-- favicon -->
+    <link rel="shortcut icon" href="images/walmart.ico"/>
+</head>
+<body>
+
+<!-- SideNav -->
+<ul id="slide-out" class="side-nav">
+    <li>
+        <div class="user-view">
+            <div class="background">
+                <img src="images/background.jpg">
+            </div>
+            <a href="#!user"><img class="circle" src="images/perfil.jpg"></a>
+            <a href="#!name"><span class="white-text name"><%= user.nome %></span></a>
+            <a href="#!email"><span class="white-text email"><%= user.user %></span></a>
+            <a href="#!saldo"><span class="white-text email">Saldo:<%= user.credito %></span></a>
+        </div>
+    </li>
+    <li><a href="/home">Home<i class="material-icons">home</i></a></li>
+    <li><a href="/listar_itens">comprar<i class="material-icons">add_shopping_cart</i></a></li>
+    <li>
+        <ul class="collapsible collapsible-accordion">
+            <li>
+                <a class="collapsible-header">cadastro<i class="material-icons">add</i></a>
+                <div class="collapsible-body">
+                    <ul>
+                        <li><a href="/cadastro_cliente">cliente<i class="material-icons">person_add</i></a></li>
+                        <li><a href="/cadastro_item"><i class="material-icons">add_to_queue</i>item</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <ul class="collapsible collapsible-accordion">
+            <li>
+                <a class="collapsible-header">Listar<i class="material-icons">search</i></a>
+                <div class="collapsible-body">
+                    <ul>
+                        <li><a href="/listar_clientes">cliente<i class="material-icons">person</i></a></li>
+                        <li><a href="/listar_itens"><i class="material-icons">tv</i>item</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <ul class="collapsible collapsible-accordion">
+            <li>
+                <a class="collapsible-header">Editar<i class="material-icons">brush</i></a>
+                <div class="collapsible-body">
+                    <ul>
+                        <li><a href="editar_cliente">cliente<i class="material-icons">person</i></a></li>
+                        <li><a href="editar_item"><i class="material-icons">tv</i>item</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <ul class="collapsible collapsible-accordion">
+            <li>
+                <a class="collapsible-header">Deletar<i class="material-icons">delete_forever</i></a>
+                <div class="collapsible-body">
+                    <ul>
+                        <li><a href="deletar_cliente">cliente<i class="material-icons">remove_circle_outline</i></a>
+                        </li>
+                        <li><a href="deletar_item"><i class="material-icons">remove_from_queue</i>item</a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </li>
+    <li>
+        <div class="divider"></div>
+    </li>
+
+    <li><a href="/logout">Logout<i class="material-icons">autorenew</i></a></li>
+</ul>
+
+<div class="container">
+    <% if(itens.length > 0){ %>
+    <form action="/editarItemEspecifico" method="post">
+        <div class="input-field col s6">
+            <select name="id">
+                <option value="" disabled selected>Choose your option</option>
+                <% for(var i = 0;i < itens.length;i++) { %>
+                <option value="<%= itens[i].id %>"><%= itens[i].nome %></option>
+                <% } %>
+            </select>
+            <label>Editar Item</label>
+        </div>
+        <button type="submit" class="btn btn-default">Editar</button>
+    </form>
+    <% } %>
+    <% if(item.length > 0){ %>
+    <h3>item: <%= item[0].nome %>    </h3>
+    <form action="/editarFinish" method="post">
+        <div class="input-field col s12">
+            <label for="titulo">id:</label>
+            <input type="text" class="form-control" id="id" name="id" value="<%= item[0].id %>">
+        </div>
+
+        <div class="input-field col s12 hiddendiv">
+            <i class="material-icons prefix">tv</i>
+            <label for="pwd">nome:</label>
+            <input type="text" class="form-control" id="nome" name="nome" value="<%= item[0].nome %>">
+        </div>
+
+        <div class="input-field col s12">
+
+            <i class="material-icons prefix">attach_money</i>
+            <label for="pwd">preço:</label>
+            <input type="text" class="form-control" id="preco" name="preco" value="<%= item[0].preco %>">
+        </div>
+        <div class="input-field col s12">
+            <i class="material-icons prefix">mode_edit</i>
+            <label for="pwd">Descrição</label>
+            <input type="text" class="form-control" id="descricao" name="descricao"
+                   value="<%= item[0].descricao %> ">
+
+        </div>
+
+        <button type="submit" class="btn btn-default">Editar</button>
+    </form>
+    <% } %>
+</div>
+</body>
+</html>

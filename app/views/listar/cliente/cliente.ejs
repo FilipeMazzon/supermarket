@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Cliente</title>
+
+    <!-- JQuery -->
+    <script src="js/jquery-2.2.1.js"></script>
+    <script type="text/javascript" src="js/materialize.min.js"></script>
+    <script src="js/sidenav.js"></script>
+    <script src="js/updateText.js"></script>
+
+    <!-- bootstrap - link cdn -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- carregando icones -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- incluindo css -->
+    <link href="css/style.css" rel="stylesheet">
+    <!-- materialize -->
+    <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection"/>
+    <!-- favicon -->
+    <link rel="shortcut icon" href="images/walmart.ico"/>
+</head>
+
+<body>
+
+<!-- SideNav -->
+<%- include ../../sidebar.ejs %>
+
+<br/><br/>
+<% if(clientes.length > 0) { %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="item_wrapper">
+                <span class="item_id"><%= clientes[0]._id %></span>
+                <span class="item_nome"><%= clientes[0].nome %></span>
+                <br/>
+                <span class="item_telefone"> Telefone:<%= clientes[0].telefone %></span>
+                <br/>
+                <span class="item_preco"> R$ <%= clientes[0].credito %> </span>
+                <br/>
+            </div>
+        </div>
+    </div>
+</div>
+<% } %>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>

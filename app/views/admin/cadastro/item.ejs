@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+
+    <title>Cadastro de Itens</title>
+
+    <script src="js/jquery-2.2.1.js"></script>
+    <script src="js/materialize.min.js"></script>
+    <script src="./js/sidenav.js"></script>
+    <script src="./js/updateText.js"></script>
+
+    <!-- bootstrap - link cdn -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+          integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <!-- carregando icones -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- incluindo css -->
+    <link href="css/style.css" rel="stylesheet">
+    <!-- materialize -->
+    <link type="text/css" rel="stylesheet" href="./css/materialize.min.css" media="screen,projection"/>
+    <!-- favicon -->
+    <link rel="shortcut icon" href="./images/walmart.ico"/>
+</head>
+
+<body>
+
+<!-- SideNav -->
+<%- include ../../sidebar.ejs %>
+
+<div class="container">
+
+    <% if(validacao.length > 0){ %>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-danger">
+                <strong>Atenção!</strong>
+                <ul>
+                    <% for(var i = 0; i < validacao.length ;i++) { %>
+                    <li><%= validacao[i].msg %></li>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <% } %>
+    <div class="row">
+        <div class="col-md-12">
+            <form action="/salvar_item" method="post">
+                <div class="input-field col s12">
+                    <label for="titulo">id:</label>
+                    <input type="text" class="form-control" id="id" name="id" value="<%= item.id %>">
+                </div>
+
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">tv</i>
+                    <label for="pwd">nome:</label>
+                    <input type="text" class="form-control" id="nome" name="nome" value="<%= item.nome %>">
+                </div>
+
+                <div class="input-field col s12">
+
+                    <i class="material-icons prefix">attach_money</i>
+                    <label for="pwd">preço:</label>
+                    <input type="text" class="form-control" id="preco" name="preco" value="<%= item.preco %>">
+                </div>
+                <div class="input-field col s12">
+                    <i class="material-icons prefix">mode_edit</i>
+                    <label for="pwd">Descrição</label>
+                    <input type="text" class="form-control" id="descricao" name="descricao"
+                           value="<%= item.descricao %> ">
+
+                </div>
+
+                <button type="submit" class="btn btn-default">Cadastrar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"
+        integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS"
+        crossorigin="anonymous"></script>
+
+</body>
+</html>
