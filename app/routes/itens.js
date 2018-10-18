@@ -1,7 +1,8 @@
+const itens = require('../controllers/itens.js')
 module.exports = function (application) {
     application.get('/listar_itens', function (req, res) {
         if (req.session.autorizado) {
-            application.app.controllers.itens.listar_itens(application, req, res);
+            itens.listar_itens(application, req, res);
         }
         else {
             res.redirect('/');
@@ -9,7 +10,7 @@ module.exports = function (application) {
     });
     application.get('/item', function (req, res) {
         if (req.session.autorizado) {
-            application.app.controllers.itens.item(application, req, res);
+            itens.look_one(application, req, res);
         }
         else {
             res.redirect('/');

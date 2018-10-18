@@ -1,4 +1,4 @@
-module.exports.cadastro_item = function (application, req, res) {
+let cadastro_item = function (application, req, res) {
     var dataUser = {
         "nome": req.session.nome,
         "user": req.session.user,
@@ -6,7 +6,7 @@ module.exports.cadastro_item = function (application, req, res) {
     };
     res.render("admin/cadastro/item", {validacao: {}, item: {}, user: dataUser});
 };
-module.exports.item_salvar = function (application, req, res) {
+let item_salvar = function (application, req, res) {
     var item = req.body;
     req.assert('id', 'id é obrigatório').notEmpty();
     req.assert('id', 'id precisa ser um numero e maior do que 0').isInt({min: 0});
@@ -32,3 +32,9 @@ module.exports.item_salvar = function (application, req, res) {
     res.redirect('/listar_itens');
 
 };
+
+exports = module.exports = {
+    cadastro_item:cadastro_item,
+    item_salvar:item_salvar  
+}
+

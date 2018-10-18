@@ -1,4 +1,4 @@
-module.exports.cadastro_cliente = function (application, req, res) {
+let cadastro_cliente = function (application, req, res) {
     var dataUser = {
         "nome": req.session.nome,
         "user": req.session.user,
@@ -6,7 +6,7 @@ module.exports.cadastro_cliente = function (application, req, res) {
     };
     res.render("admin/cadastro/cliente", {validacao: {}, cliente: {}, user: dataUser});
 };
-module.exports.cliente_salvar = function (application, req, res) {
+let cliente_salvar = function (application, req, res) {
 
     var cliente = req.body;
     req.assert('user', 'user é obrigatório').notEmpty();
@@ -33,3 +33,8 @@ module.exports.cliente_salvar = function (application, req, res) {
     clienteDAO.salvarCliente(cliente, dataUser);
     res.redirect("/listar_clientes");
 };
+
+exports = module.exports = {
+    cliente_salvar:cliente_salvar,
+    cadastro_cliente:cadastro_cliente  
+}

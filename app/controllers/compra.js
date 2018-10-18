@@ -1,4 +1,4 @@
-module.exports.finalizarCompra = function (application, req, res) {
+const finalizarCompra = function (application, req, res) {
     var dataUser = {
         "nome": req.session.nome,
         "user": req.session.user,
@@ -9,6 +9,8 @@ module.exports.finalizarCompra = function (application, req, res) {
     var connection = application.config.dbConnection;
     var clienteDAO = new application.app.models.ClienteDAO(connection);
     clienteDAO.comprar(precoItem, req, res, dataUser);
-
-
 };
+
+exports = module.exports = {
+    finalizarCompra:finalizarCompra
+}

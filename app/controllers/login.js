@@ -1,7 +1,7 @@
-module.exports.login = function (application, req, res) {
+let login = function (application, req, res) {
     res.render("login/login", {validacao: {}, login: {}});
 };
-module.exports.check = function (application, req, res) {
+let check = function (application, req, res) {
     var dados = req.body;
 
     req.assert('user', 'usuario não pode ser vazio').notEmpty();
@@ -19,3 +19,8 @@ module.exports.check = function (application, req, res) {
     clienteDAO.autentificar(dados, req, res);
 
 };
+
+exports = module.exports = {
+    login:login,
+    check:check
+}

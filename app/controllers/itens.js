@@ -1,4 +1,4 @@
-module.exports.listar_itens = function (application, req, res) {
+const listar_itens = function (application, req, res) {
 
     var connection = application.config.dbConnection;
     var itemDAO = new application.app.models.ItemDAO(connection);
@@ -9,7 +9,7 @@ module.exports.listar_itens = function (application, req, res) {
     };
     itemDAO.getItens(req, res, "listar", dataUser);
 };
-module.exports.item = function (application, req, res) {
+const look_one = function (application, req, res) {
     var item = req.query;
     var dataUser = {
         "nome": req.session.nome,
@@ -20,3 +20,8 @@ module.exports.item = function (application, req, res) {
     var itemDAO = new application.app.models.ItemDAO(connection);
     itemDAO.getItem(item, req, res, "listar", dataUser);
 };
+
+exports = module.exports ={
+    look_one:look_one,
+    listar_itens:listar_itens
+}

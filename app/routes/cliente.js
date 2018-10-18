@@ -1,8 +1,8 @@
+const client = require('../controllers/clientes.js');
 module.exports = function (application) {
-
     application.get('/listar_clientes', function (req, res) {
         if (req.session.admin) {
-            application.app.controllers.clientes.listar_clientes(application, req, res);
+            client.listar_clientes(application, req, res);
         }
         else if (req.session.autorizado) {
             res.redirect('/home');
@@ -13,7 +13,7 @@ module.exports = function (application) {
     });
     application.get('/cliente', function (req, res) {
         if (req.session.admin) {
-            application.app.controllers.clientes.listar_cliente(application, req, res);
+            client.listar_cliente(application, req, res);
         }
         else if (req.session.autorizado) {
             res.redirect('/home');
@@ -22,5 +22,4 @@ module.exports = function (application) {
             res.redirect('/');
         }
     });
-
 };

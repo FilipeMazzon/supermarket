@@ -1,7 +1,8 @@
+const cadastroCliente = require('../../../controllers/admin/cadastro/cliente.js');
 module.exports = function (application) {
     application.get('/cadastro_cliente', function (req, res) {
         if (req.session.admin) {
-            application.app.controllers.admin.cadastro.cliente.cadastro_cliente(application, req, res);
+            cadastroCliente.cadastro_cliente(application, req, res);
         }
         else if (req.session.autorizado) {
             res.redirect('/home');
@@ -12,7 +13,7 @@ module.exports = function (application) {
     });
     application.post('/salvar_cliente', function (req, res) {
         if (req.session.admin) {
-            application.app.controllers.admin.cadastro.cliente.cliente_salvar(application, req, res);
+            cadastroCliente.cliente_salvar(application, req, res);
         }
         else if (req.session.autorizado) {
             res.redirect('/home');

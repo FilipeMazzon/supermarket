@@ -1,5 +1,4 @@
-module.exports.index = function (application, req, res) {
-
+let index = function (application, req, res) {
     var connection = application.config.dbConnection;
     var itemDAO = new application.app.models.ItemDAO(connection, req);
     var dataUser = {
@@ -9,3 +8,7 @@ module.exports.index = function (application, req, res) {
     };
     itemDAO.get5UltimosItens(req, res, dataUser);
 };
+
+exports = module.exports = {
+    index:index
+}
