@@ -14,4 +14,5 @@
   mongo supermarket;<br />
   db.clientes.insert({"user":"admin","password":"admin","credito":999999,"nome":"admin"});<br />
 ```
-open Supermarket[localhost:3000/]
+
+open [Supermarket](http://localhost:3000//)
