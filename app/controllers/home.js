@@ -4,7 +4,7 @@ let index = function (application, req, res) {
     var dataUser = {
         "nome": req.session.nome,
         "user": req.session.user,
-        "credito": req.session.saldo
+        "credito": req.session.saldo,
     };
     itemDAO.get5UltimosItens(req, res, dataUser);
 };
