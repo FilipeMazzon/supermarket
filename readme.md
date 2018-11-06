@@ -9,10 +9,10 @@
 ## create first user
 
 ```js
-  mongod<br />
-  // open new terminal<br />
-  mongo supermarket;<br />
-  db.clientes.insert({"user":"admin","password":"admin","credito":999999,"nome":"admin"});<br />
+  mongod
+  // open new terminal
+  mongo supermarket;
+  db.clientes.insert({"user":"admin","password":"admin","credito":999999,"nome":"admin"});
 ```
 
 open [Supermarket](http://localhost:3000//)
